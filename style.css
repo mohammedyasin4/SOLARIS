@@ -70,10 +70,10 @@ body {
 /* Sun styles */
 .sun {
     position: absolute;
-    left: 50%;
+    left: -12%;
     top: 50%;
-    width: 5rem;
-    height: 5rem;
+    width: 25rem;
+    height: 25rem;
     background-color: #ecc94b;
     border-radius: 50%;
     transform: translate(-50%, -50%);
@@ -84,7 +84,7 @@ body {
 /* Orbit styles */
 .orbit {
     position: absolute;
-    left: 50%;
+    left: -12%;
     top: 50%;
     border-radius: 50%;
     border: 1px solid #515034;
