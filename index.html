@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="solar-system" id="solarSystem">
+        <div class="SOLARIS-text">SOLARIS</div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="insert planet..." onkeypress="checkEnter(event)">
+        </div>
+        <div class="sun"></div>
+
+        <div class="planet-info" id="planetInfo" style="display: none;"></div>
+
+        <div class="focused-planet-info" id="focusedPlanetInfo" style="display: none;">
+            <h2 id="focusedPlanetName"></h2>
+            <p id="focusedPlanetDescription"></p>
+            <button onclick="handlePlanetClick(null)">Return to Solar System</button>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+
+
+</body>
+</html>
