@@ -3,13 +3,25 @@ var planets;
 
 let focusedPlanet = null;
 
+let planetsColors = [
+    'yellow', // SOl
+    '#8b8983',
+    '#e6cbca',
+    '#418ed5',
+    '#eb5c5d',
+    '#e29468',
+    '#c7aa72',
+    '#c9d4f1',
+    '#7a91a7'
+];
+
 async function getApiData(){
     let resp = await fetch('https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys', {
         method: 'POST',
         headers: {'x-zocom': 'solaris-2ngXkR6S02ijFrTP'}
     })
     let data = await resp.json();
-    console.log(data.key);
+   
     let bodies = await fetch('https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies',
         {
             method: 'GET',
@@ -17,36 +29,45 @@ async function getApiData(){
         }
     )
     let result = await bodies.json();
-    console.log(result);
     planets = result.bodies;
-
 }
 
 async function generatePlanets() {
     const solarSystem = document.getElementById('solarSystem');
 
+    // Get API key then data of planets
     await getApiData();
+
+    let distanceBetweenPlanets = 0;
 
     // Generate planets and orbits
     planets.forEach((planet, index) => {
-        const orbit = document.createElement('div');
-        orbit.className = 'orbit';
-        orbit.style.width = (planet.distance / 1000000) +'px';
-        orbit.style.height = (planet.distance / 1000000) +'px';
-        solarSystem.appendChild(orbit);
-
+        if(index == 0){
+            return; // vi skippar solen eftersom den ritas i css filen 
+        }
+        if(index == 4){
+            planet.distance = 228000000; // API visar fel distans för planeten Mars
+        }
+   
+        
         const planetContainer = document.createElement('div');
         planetContainer.className = 'planet-container';
-        planetContainer.style.animation = `orbit ${15 + index * 5}s linear infinite`;
-        planetContainer.style.zIndex = planets.length - index; // Add this line
-
+        planetContainer.style.zIndex = planets.length - index; 
+        
         const planetElement = document.createElement('div');
         planetElement.className = 'planet';
-        planetElement.style.width = (planet.circumference / 100) + 'px';
-        planetElement.style.height = (planet.circumference / 100) + 'px';
-        planetElement.style.backgroundColor = 'red';
-        planetElement.style.top = `-${planet.circumference / 100}px`;
-        planetElement.style.left = `${(planet.distance / 1000000)- planet.circumference / 100 }px`;
+        planetElement.style.width = (planet.circumference / planets[0].circumference) * 1500 + 'px'; // planetens omkrets / solens omkrets
+        planetElement.style.height = (planet.circumference / planets[0].circumference) * 1500 + 'px';
+        planetElement.style.backgroundColor = planetsColors[index];
+        planetElement.style.top = '-1rem';
+        if(planet.name=='Merkurius'){
+            distanceBetweenPlanets = 300; // px
+            planetElement.style.left = distanceBetweenPlanets + 'px';
+        }
+        else{
+            planetElement.style.left = distanceBetweenPlanets + 'px';
+        }
+        distanceBetweenPlanets += 185;
 
        planetElement.addEventListener('click', (event) => {
             event.stopPropagation();
@@ -59,18 +80,6 @@ async function generatePlanets() {
 }
 
 
-
-function handlePlanetHover(planetName) {
-    const planetInfo = document.getElementById('planetInfo');
-    if (planetName && !focusedPlanet) {
-        planetInfo.textContent = planetName;
-        planetInfo.style.display = 'none';
-        selectedPlanet = planetName;
-    } else {
-        planetInfo.style.display = 'none';
-        selectedPlanet = null;
-    }
-}
 
 function handlePlanetClick(planetName) {
     if (planetName){focusedPlanet = planetName;
@@ -130,12 +139,4 @@ function checkEnter(event) {
     }
 }
 
-
-
-
-
-
-
-
 generatePlanets();
-
