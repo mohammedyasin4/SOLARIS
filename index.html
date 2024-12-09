@@ -7,23 +7,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-    <div class="solar-system" id="solarSystem">
+<section class="container">
+    <section class="solar-system" id="solarSystem">
         <div class="SOLARIS-text">SOLARIS</div>
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Insert Planet..." onkeypress="checkEnter(event)">
+            <input type="text" id="searchInput" placeholder="Sök Planet..." onkeypress="checkEnter(event)">
         </div>
         <div class="sun"></div>
 
         <div class="planet-info" id="planetInfo" style="display: none;"></div>
 
-        <div class="focused-planet-info" id="focusedPlanetInfo" style="display: none;">
+        <section class="focused-planet-info" id="focusedPlanetInfo" style="display: none;">
             <h2 id="focusedPlanetName"></h2>
             <p id="focusedPlanetDescription"></p>
             <button onclick="handlePlanetClick(null)">Return to Solar System</button>
-        </div>
-    </div>
-</div>
+        </section>
+    </section>
+</section>
 <script src="script.js"></script>
 
 

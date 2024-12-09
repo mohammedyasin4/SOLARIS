@@ -2,7 +2,6 @@
 
 
 
-/* Global styles */
 body {
     margin: 0;
     padding: 0;
@@ -10,7 +9,7 @@ body {
     font-family: "Inter", sans-serif;
 }
 
-/* Container styles */
+
 .container {
     display: flex;
     align-items: center;
@@ -35,14 +34,14 @@ body {
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 4rem; /* Adjust size as needed */
-    color: rgba(255, 255, 255, 0.1); /* Light color with opacity */
+    font-size: 4rem; 
+    color: rgba(255, 255, 255, 0.1); 
     font-weight: bold;
     text-align: center;
-    letter-spacing: 0.70rem; /* Adjust spacing for a modern look */
-    user-select: none; /* Prevent text selection */
-    pointer-events: none; /* Prevent interaction */
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* Add a shadow for depth */
+    letter-spacing: 0.70rem; 
+   
+    pointer-events: none; 
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); 
 }
 
 
@@ -66,10 +65,10 @@ body {
 
   }
 
-/* Sun styles */
+
 .sun {
     position: absolute;
-    left: 0%;
+    left: 0%; /* placerar solen i den vänstra kanten */
     top: 50%;
     width: 50rem;
     height: 75rem;
@@ -79,7 +78,7 @@ body {
     box-shadow: 0 0 60px 20px rgba(255, 255, 0, 0.4);
 }
 
-/* Planet styles */
+
 .planet-container {
     position: absolute;
     left: -12%;
@@ -99,7 +98,8 @@ body {
 .planet:hover {
     transform: scale(1.5);
     position: absolute;
-    z-index: 100; 
+    z-index: 100; /* Sätter z-index till 100 för att säkerställa att detta element visas ovanför 
+    andra element i layouten */
 }
 
 .planet.focused {
